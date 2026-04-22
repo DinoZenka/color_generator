@@ -43,6 +43,11 @@ class ColorRepositoryImpl implements ColorRepository {
     return newColor;
   }
 
+  @override
+  Future<void> clearAll() {
+    return _localDataSource.clearAll();
+  }
+
   String _toHex(int value) =>
       value.toRadixString(16).padLeft(2, '0').toUpperCase();
 }

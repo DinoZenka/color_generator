@@ -8,6 +8,7 @@ abstract class ColorLocalDataSource {
   Future<List<ColorModel>> getAllColors();
   Future<ColorModel> updateColor(String id, bool isFavourite);
   Future<void> saveNewColor(ColorModel color);
+  Future<void> clearAll();
 }
 
 class ColorLocalDataSourceImpl implements ColorLocalDataSource {
@@ -48,6 +49,11 @@ class ColorLocalDataSourceImpl implements ColorLocalDataSource {
     final currentHistory = await getAllColors();
     currentHistory.insert(0, newColor);
     await _saveAll(currentHistory);
+  }
+
+  @override
+  Future<void> clearAll() async {
+    return _pref.remove(_storageKey);
   }
 
   Future<void> _saveAll(List<ColorModel> colors) async {

@@ -37,6 +37,13 @@ class ColorNotifier extends _$ColorNotifier {
     final previousState = await future;
     state = AsyncData([newColor, ...previousState]);
   }
+
+  Future<void> clearAll() async {
+    final repo = ref.read(colorRepositoryProvider);
+    await repo.clearAll();
+
+    state = AsyncData([]);
+  }
 }
 
 @riverpod
@@ -65,7 +72,7 @@ Color displayColor(Ref ref) {
     colorProvider.select((async) => async.value?.firstOrNull?.color),
   );
 
-  return latestColor ?? Colors.transparent;
+  return latestColor ?? Colors.white;
 }
 
 @riverpod

@@ -4,4 +4,5 @@ abstract interface class ColorRepository {
   Future<List<ColorModel>> getColorsHistory();
   Future<ColorModel> updateColor(String id, bool isFavourite);
   Future<ColorModel> generateColor();
+  Future<void> clearAll();
 }
