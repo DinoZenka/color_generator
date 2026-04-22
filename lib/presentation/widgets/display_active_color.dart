@@ -50,9 +50,9 @@ class _DisplayActiveColorState extends State<DisplayActiveColor> {
     return Card(
       elevation: 0,
       color: foregroundColor.withAlpha(25),
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
       child: InkWell(
-        borderRadius: BorderRadius.circular(16),
+        borderRadius: BorderRadius.circular(8),
         onTap: _isCopied ? null : _handleCopy,
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),

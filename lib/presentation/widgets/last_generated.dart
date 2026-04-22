@@ -19,45 +19,42 @@ class LastGenerated extends ConsumerWidget {
           'Last generated:',
           style: theme.textTheme.labelLarge?.copyWith(color: textColor),
         ),
-        Container(
-          padding: EdgeInsets.all(8),
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(8),
-            boxShadow: [
-              BoxShadow(
-                color: Colors.black.withValues(alpha: 0.2),
-                blurRadius: 4,
-              ),
-            ],
-          ),
-          child: Row(
-            spacing: 8,
-            mainAxisAlignment: MainAxisAlignment.center,
-            mainAxisSize: MainAxisSize.min,
-            children: displayColors
-                .map<Widget>(
-                  (ColorModel currentColor) => InkWell(
-                    key: ValueKey(currentColor.id),
-                    onTap: () => ref
-                        .read(activeColorProvider.notifier)
-                        .select(currentColor.color),
-                    child: Container(
-                      decoration: BoxDecoration(
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.black.withValues(alpha: 0.5),
-                            blurRadius: 4,
-                          ),
-                        ],
-                        color: currentColor.color,
-                        borderRadius: BorderRadius.circular(8),
+        Card(
+          elevation: 0,
+          color: textColor?.withAlpha(25),
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+            child: Row(
+              spacing: 8,
+              mainAxisAlignment: MainAxisAlignment.center,
+              mainAxisSize: MainAxisSize.min,
+              children: displayColors
+                  .map<Widget>(
+                    (ColorModel currentColor) => InkWell(
+                      borderRadius: BorderRadius.circular(8),
+                      key: ValueKey(currentColor.id),
+                      onTap: () => ref
+                          .read(activeColorProvider.notifier)
+                          .select(currentColor.color),
+                      child: Container(
+                        decoration: BoxDecoration(
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.black.withValues(alpha: 0.5),
+                              blurRadius: 4,
+                            ),
+                          ],
+                          color: currentColor.color,
+                          borderRadius: BorderRadius.circular(8),
+                        ),
+                        width: 50,
+                        height: 50,
                       ),
-                      width: 50,
-                      height: 50,
                     ),
-                  ),
-                )
-                .toList(),
+                  )
+                  .toList(),
+            ),
           ),
         ),
       ],
