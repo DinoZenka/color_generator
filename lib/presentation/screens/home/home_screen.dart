@@ -16,6 +16,10 @@ class HomeScreen extends ConsumerWidget {
     );
     final recentColors = ref.watch(recentColorsProvider);
 
+    final textColor = bgColor.computeLuminance() > 0.5
+        ? Colors.black
+        : Colors.white;
+
     return Scaffold(
       body: InkWell(
         onTap: () => ref.read(colorProvider.notifier).generateColor(),
@@ -25,14 +29,20 @@ class HomeScreen extends ConsumerWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text('Hello there', style: theme.textTheme.titleLarge),
+              Text(
+                'Hello there',
+                style: theme.textTheme.titleLarge?.copyWith(color: textColor),
+              ),
               if (totalGenerated > 0) ...[
                 Text(
                   'Total generated: $totalGenerated',
-                  style: theme.textTheme.bodyLarge,
+                  style: theme.textTheme.bodyLarge?.copyWith(color: textColor),
                 ),
                 const SizedBox(height: 28),
-                LastGenerated(displayColors: recentColors),
+                LastGenerated(
+                  displayColors: recentColors,
+                  textColor: textColor,
+                ),
               ],
               if (ref.watch(colorProvider).isLoading && totalGenerated == 0)
                 const CircularProgressIndicator(),

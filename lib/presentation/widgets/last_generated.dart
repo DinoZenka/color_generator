@@ -5,7 +5,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class LastGenerated extends ConsumerWidget {
   final List<ColorModel> displayColors;
-  const LastGenerated({super.key, required this.displayColors});
+  final Color? textColor;
+  const LastGenerated({super.key, required this.displayColors, this.textColor});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -14,7 +15,10 @@ class LastGenerated extends ConsumerWidget {
     return Column(
       spacing: 8,
       children: [
-        Text('Last generated:', style: theme.textTheme.labelLarge),
+        Text(
+          'Last generated:',
+          style: theme.textTheme.labelLarge?.copyWith(color: textColor),
+        ),
         Container(
           padding: EdgeInsets.all(8),
           decoration: BoxDecoration(
