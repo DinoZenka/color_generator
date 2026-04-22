@@ -8,8 +8,8 @@ class ActionButtons extends ConsumerWidget {
   final Color textColor;
   final bool clearDisabled;
   const ActionButtons({
-    super.key,
     required this.textColor,
+    super.key,
     this.clearDisabled = false,
   });
 
@@ -62,7 +62,7 @@ class ActionButtons extends ConsumerWidget {
   ) async {
     final confirmed = await _showClearDialog(context, theme);
 
-    if (confirmed == true && context.mounted) {
+    if ((confirmed ?? false) && context.mounted) {
       await ref.read(colorProvider.notifier).clearAll();
 
       if (context.mounted) {
@@ -82,6 +82,7 @@ class ActionButtons extends ConsumerWidget {
       builder: (context) => AlertDialog(
         title: const Text('Clear history?'),
         content: const Text(
+          // ignore: lines_longer_than_80_chars
           'This will permanently delete all generated colors. This action cannot be undone.',
         ),
         actions: [

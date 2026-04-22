@@ -9,7 +9,7 @@ import 'package:uuid/uuid.dart';
 class ColorRepositoryImpl implements ColorRepository {
   final RandomNumber _randomService;
   final ColorLocalDataSource _localDataSource;
-  final uuid = Uuid();
+  final uuid = const Uuid();
 
   ColorRepositoryImpl(this._randomService, this._localDataSource);
 
@@ -19,8 +19,8 @@ class ColorRepositoryImpl implements ColorRepository {
   }
 
   @override
-  Future<ColorModel> updateColor(String id, bool isFavourite) async {
-    return _localDataSource.updateColor(id, isFavourite);
+  Future<ColorModel> updateColor(String id, {required bool isFavourite}) async {
+    return _localDataSource.updateColor(id, isFavourite: isFavourite);
   }
 
   @override

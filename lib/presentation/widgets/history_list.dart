@@ -5,11 +5,13 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class HistoryList extends ConsumerWidget {
   final bool isFavoritesOnly;
-  const HistoryList({super.key, required this.isFavoritesOnly});
+  const HistoryList({required this.isFavoritesOnly, super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final colors = ref.watch(filteredColorsProvider(isFavoritesOnly));
+    final colors = ref.watch(
+      filteredColorsProvider(isFavoritesOnly: isFavoritesOnly),
+    );
 
     if (colors.isEmpty) {
       return Center(

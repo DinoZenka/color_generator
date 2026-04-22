@@ -1,4 +1,4 @@
-package com.example.color_randomizer
+package com.dinozenka.color_randomizer
 
 import io.flutter.embedding.android.FlutterActivity
 

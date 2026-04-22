@@ -8,12 +8,12 @@ class BaseButton extends StatelessWidget {
   final VoidCallback? onPressed;
 
   const BaseButton({
-    super.key,
     required this.icon,
     required this.label,
     required this.backgroundColor,
     required this.foregroundColor,
     required this.onPressed,
+    super.key,
   });
 
   @override

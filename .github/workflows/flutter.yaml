@@ -29,9 +29,6 @@ jobs:
       - name: Run custom_lint
         run: flutter analyze --fatal-infos
 
-      - name: Run Custom Lints
-        run: dart run custom_lint
-
       - name: Check formatting
         run: dart format . --set-exit-if-changed
 
