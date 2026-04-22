@@ -10,7 +10,7 @@ packages:
     source: hosted
     version: "92.0.0"
   analyzer:
-    dependency: transitive
+    dependency: "direct overridden"
     description:
       name: analyzer
       sha256: "70e4b1ef8003c64793a9e268a551a82869a8a96f39deb73dea28084b0e8bf75e"
@@ -25,6 +25,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.3.0"
+  analyzer_plugin:
+    dependency: transitive
+    description:
+      name: analyzer_plugin
+      sha256: "6645a029da947ffd823d98118f385d4bd26b54eb069c006b22e0b94e451814b5"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.13.11"
   args:
     dependency: transitive
     description:
@@ -113,6 +121,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.0.4"
+  ci:
+    dependency: transitive
+    description:
+      name: ci
+      sha256: "145d095ce05cddac4d797a158bc4cf3b6016d1fe63d8c3d2fbd7212590adca13"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.1.0"
   cli_config:
     dependency: transitive
     description:
@@ -121,6 +137,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.2.0"
+  cli_util:
+    dependency: transitive
+    description:
+      name: cli_util
+      sha256: ff6785f7e9e3c38ac98b2fb035701789de90154024a75b6cb926445e83197d1c
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.4.2"
   clock:
     dependency: transitive
     description:
@@ -177,6 +201,38 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.0.9"
+  custom_lint:
+    dependency: transitive
+    description:
+      name: custom_lint
+      sha256: "751ee9440920f808266c3ec2553420dea56d3c7837dd2d62af76b11be3fcece5"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.8.1"
+  custom_lint_builder:
+    dependency: transitive
+    description:
+      name: custom_lint_builder
+      sha256: "1128db6f58e71d43842f3b9be7465c83f0c47f4dd8918f878dd6ad3b72a32072"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.8.1"
+  custom_lint_core:
+    dependency: transitive
+    description:
+      name: custom_lint_core
+      sha256: "85b339346154d5646952d44d682965dfe9e12cae5febd706f0db3aa5010d6423"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.8.1"
+  custom_lint_visitor:
+    dependency: transitive
+    description:
+      name: custom_lint_visitor
+      sha256: e466d17856197cf9bce7ca03804d784fddab809db7bda787f3d2799ac89faadd
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.0.0+9.0.0"
   dart_style:
     dependency: transitive
     description:
@@ -288,6 +344,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.3.2"
+  hotreloader:
+    dependency: transitive
+    description:
+      name: hotreloader
+      sha256: "66871df468fc24eee81f1a0a7cb98acc104716f9b7376d355437b48d633c4ebf"
+      url: "https://pub.dev"
+    source: hosted
+    version: "4.4.0"
   http_multi_server:
     dependency: transitive
     description:
@@ -528,6 +592,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "4.0.3"
+  rxdart:
+    dependency: transitive
+    description:
+      name: rxdart
+      sha256: "5c3004a4a8dbb94bd4bf5412a4def4acdaa12e12f269737a5751369e12d1a962"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.28.0"
   shared_preferences:
     dependency: "direct main"
     description:
@@ -621,6 +693,14 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  solid_lints:
+    dependency: "direct dev"
+    description:
+      name: solid_lints
+      sha256: "1658712054a35742446256dad1cbf6d7754eba913bd689bbad87fe83df8cefe8"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.3.3"
   source_gen:
     dependency: transitive
     description:

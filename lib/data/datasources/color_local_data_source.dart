@@ -23,7 +23,7 @@ class ColorLocalDataSourceImpl implements ColorLocalDataSource {
     if (colorsJson == null) return [];
 
     return colorsJson.map((jsonString) {
-      final Map<String, dynamic> map = jsonDecode(jsonString);
+      final map = jsonDecode(jsonString) as Map<String, dynamic>;
       return ColorDto.fromJson(map).toEntity();
     }).toList();
   }

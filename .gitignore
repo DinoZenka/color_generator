@@ -33,6 +33,11 @@ migrate_working_dir/
 /build/
 /coverage/
 
+# Generated files (Riverpod, json_serializable, etc)
+*.g.dart
+*.freezed.dart
+*.gr.dart
+
 # Symbolication related
 app.*.symbols
 
