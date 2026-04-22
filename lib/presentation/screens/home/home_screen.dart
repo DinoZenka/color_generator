@@ -1,4 +1,5 @@
 import 'package:color_randomizer/presentation/providers/color_provider.dart';
+import 'package:color_randomizer/presentation/widgets/last_generated.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -9,28 +10,32 @@ class HomeScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final theme = Theme.of(context);
 
-    final colors = ref.watch(colorProvider).value;
-    final hasItems = colors != null && colors.isNotEmpty;
-    final bgColor = hasItems ? colors.first.color : theme.colorScheme.surface;
+    final bgColor = ref.watch(displayColorProvider);
+    final totalGenerated = ref.watch(
+      colorProvider.select((async) => async.value?.length ?? 0),
+    );
+    final recentColors = ref.watch(recentColorsProvider);
 
     return Scaffold(
       body: InkWell(
-        onTap: () {
-          ref.read(colorProvider.notifier).generateColor();
-        },
+        onTap: () => ref.read(colorProvider.notifier).generateColor(),
         child: Container(
           color: bgColor,
           alignment: Alignment.center,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
-            spacing: 8,
             children: [
               Text('Hello there', style: theme.textTheme.titleLarge),
-              if (hasItems)
+              if (totalGenerated > 0) ...[
                 Text(
-                  'Total generated: ${colors.length}',
+                  'Total generated: $totalGenerated',
                   style: theme.textTheme.bodyLarge,
                 ),
+                const SizedBox(height: 28),
+                LastGenerated(displayColors: recentColors),
+              ],
+              if (ref.watch(colorProvider).isLoading && totalGenerated == 0)
+                const CircularProgressIndicator(),
             ],
           ),
         ),

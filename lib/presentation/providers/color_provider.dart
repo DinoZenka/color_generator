@@ -1,5 +1,7 @@
 import 'package:color_randomizer/data/providers.dart';
 import 'package:color_randomizer/domain/entities/color_model.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'color_provider.g.dart';
@@ -35,4 +37,40 @@ class ColorNotifier extends _$ColorNotifier {
     final previousState = await future;
     state = AsyncData([newColor, ...previousState]);
   }
+}
+
+@riverpod
+class ActiveColor extends _$ActiveColor {
+  @override
+  Color? build() {
+    ref.listen(colorProvider.select((async) => async.value?.length), (
+      prev,
+      next,
+    ) {
+      if (prev != next) state = null;
+    });
+
+    return null;
+  }
+
+  void select(Color color) => state = color;
+}
+
+@riverpod
+Color displayColor(Ref ref) {
+  final selection = ref.watch(activeColorProvider);
+  if (selection != null) return selection;
+
+  final latestColor = ref.watch(
+    colorProvider.select((async) => async.value?.firstOrNull?.color),
+  );
+
+  return latestColor ?? Colors.transparent;
+}
+
+@riverpod
+List<ColorModel> recentColors(Ref ref) {
+  return ref.watch(
+    colorProvider.select((async) => async.value?.take(5).toList() ?? []),
+  );
 }
