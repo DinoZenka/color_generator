@@ -1,4 +1,5 @@
 import 'package:color_randomizer/presentation/providers/color_provider.dart';
+import 'package:color_randomizer/presentation/widgets/display_active_color.dart';
 import 'package:color_randomizer/presentation/widgets/last_generated.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -39,11 +40,17 @@ class HomeScreen extends ConsumerWidget {
                   style: theme.textTheme.bodyLarge?.copyWith(color: textColor),
                 ),
                 const SizedBox(height: 28),
+                DisplayActiveColor(color: bgColor),
+                const SizedBox(height: 28),
                 LastGenerated(
                   displayColors: recentColors,
                   textColor: textColor,
                 ),
-              ],
+              ] else
+                Text(
+                  'Tap anywhere to change the color!',
+                  style: theme.textTheme.bodyLarge?.copyWith(color: textColor),
+                ),
               if (ref.watch(colorProvider).isLoading && totalGenerated == 0)
                 const CircularProgressIndicator(),
             ],
