@@ -74,3 +74,11 @@ List<ColorModel> recentColors(Ref ref) {
     colorProvider.select((async) => async.value?.take(5).toList() ?? []),
   );
 }
+
+@riverpod
+List<ColorModel> filteredColors(Ref ref, bool isFavoritesOnly) {
+  final allColors = ref.watch(colorProvider).value ?? [];
+  return isFavoritesOnly
+      ? allColors.where((c) => c.isFavourite).toList()
+      : allColors;
+}

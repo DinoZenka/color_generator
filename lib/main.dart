@@ -11,10 +11,12 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Color generator',
-      theme: ThemeData(colorScheme: .fromSeed(seedColor: Colors.deepPurple)),
-      home: ProviderScope(child: const HomeScreen()),
+    return ProviderScope(
+      child: MaterialApp(
+        title: 'Color generator',
+        theme: ThemeData(colorScheme: .fromSeed(seedColor: Colors.deepPurple)),
+        home: const HomeScreen(),
+      ),
     );
   }
 }

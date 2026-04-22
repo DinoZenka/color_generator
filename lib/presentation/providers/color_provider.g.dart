@@ -191,3 +191,85 @@ final class RecentColorsProvider
 }
 
 String _$recentColorsHash() => r'0abf75f5e4c09fb3bae60ce6a214a440d4f8c67b';
+
+@ProviderFor(filteredColors)
+final filteredColorsProvider = FilteredColorsFamily._();
+
+final class FilteredColorsProvider
+    extends
+        $FunctionalProvider<
+          List<ColorModel>,
+          List<ColorModel>,
+          List<ColorModel>
+        >
+    with $Provider<List<ColorModel>> {
+  FilteredColorsProvider._({
+    required FilteredColorsFamily super.from,
+    required bool super.argument,
+  }) : super(
+         retry: null,
+         name: r'filteredColorsProvider',
+         isAutoDispose: true,
+         dependencies: null,
+         $allTransitiveDependencies: null,
+       );
+
+  @override
+  String debugGetCreateSourceHash() => _$filteredColorsHash();
+
+  @override
+  String toString() {
+    return r'filteredColorsProvider'
+        ''
+        '($argument)';
+  }
+
+  @$internal
+  @override
+  $ProviderElement<List<ColorModel>> $createElement($ProviderPointer pointer) =>
+      $ProviderElement(pointer);
+
+  @override
+  List<ColorModel> create(Ref ref) {
+    final argument = this.argument as bool;
+    return filteredColors(ref, argument);
+  }
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(List<ColorModel> value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<List<ColorModel>>(value),
+    );
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return other is FilteredColorsProvider && other.argument == argument;
+  }
+
+  @override
+  int get hashCode {
+    return argument.hashCode;
+  }
+}
+
+String _$filteredColorsHash() => r'1b09952ec61e014e87b6181beaa09dff514227d6';
+
+final class FilteredColorsFamily extends $Family
+    with $FunctionalFamilyOverride<List<ColorModel>, bool> {
+  FilteredColorsFamily._()
+    : super(
+        retry: null,
+        name: r'filteredColorsProvider',
+        dependencies: null,
+        $allTransitiveDependencies: null,
+        isAutoDispose: true,
+      );
+
+  FilteredColorsProvider call(bool isFavoritesOnly) =>
+      FilteredColorsProvider._(argument: isFavoritesOnly, from: this);
+
+  @override
+  String toString() => r'filteredColorsProvider';
+}
