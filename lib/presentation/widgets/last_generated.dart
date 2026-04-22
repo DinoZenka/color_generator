@@ -6,7 +6,11 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 class LastGenerated extends ConsumerWidget {
   final List<ColorModel> displayColors;
   final Color? textColor;
-  const LastGenerated({super.key, required this.displayColors, this.textColor});
+  const LastGenerated({
+    required this.displayColors,
+    super.key,
+    this.textColor,
+  });
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -36,7 +40,7 @@ class LastGenerated extends ConsumerWidget {
                       key: ValueKey(currentColor.id),
                       onTap: () => ref
                           .read(activeColorProvider.notifier)
-                          .select(currentColor.color),
+                          .setActiveColor(currentColor.color),
                       child: Container(
                         decoration: BoxDecoration(
                           boxShadow: [

@@ -20,7 +20,7 @@ class ColorNotifier extends _$ColorNotifier {
     required bool isFavourite,
   }) async {
     final repo = ref.read(colorRepositoryProvider);
-    final updatedColor = await repo.updateColor(id, isFavourite);
+    final updatedColor = await repo.updateColor(id, isFavourite: isFavourite);
 
     final previousState = await future;
     state = AsyncData(
@@ -42,7 +42,7 @@ class ColorNotifier extends _$ColorNotifier {
     final repo = ref.read(colorRepositoryProvider);
     await repo.clearAll();
 
-    state = AsyncData([]);
+    state = const AsyncData([]);
   }
 }
 
@@ -60,7 +60,8 @@ class ActiveColor extends _$ActiveColor {
     return null;
   }
 
-  void select(Color color) => state = color;
+  // ignore: use_setters_to_change_properties
+  void setActiveColor(Color color) => state = color;
 }
 
 @riverpod
@@ -83,7 +84,7 @@ List<ColorModel> recentColors(Ref ref) {
 }
 
 @riverpod
-List<ColorModel> filteredColors(Ref ref, bool isFavoritesOnly) {
+List<ColorModel> filteredColors(Ref ref, {bool isFavoritesOnly = false}) {
   final allColors = ref.watch(colorProvider).value ?? [];
   return isFavoritesOnly
       ? allColors.where((c) => c.isFavourite).toList()

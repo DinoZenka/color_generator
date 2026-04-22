@@ -6,7 +6,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 abstract class ColorLocalDataSource {
   Future<List<ColorModel>> getAllColors();
-  Future<ColorModel> updateColor(String id, bool isFavourite);
+  Future<ColorModel> updateColor(String id, {required bool isFavourite});
   Future<void> saveNewColor(ColorModel color);
   Future<void> clearAll();
 }
@@ -29,7 +29,7 @@ class ColorLocalDataSourceImpl implements ColorLocalDataSource {
   }
 
   @override
-  Future<ColorModel> updateColor(String id, bool isFavourite) async {
+  Future<ColorModel> updateColor(String id, {required bool isFavourite}) async {
     final List<ColorModel> currentHistory = await getAllColors();
     final int index = currentHistory.indexWhere((element) => element.id == id);
     if (index == -1) throw Exception("Color not found");

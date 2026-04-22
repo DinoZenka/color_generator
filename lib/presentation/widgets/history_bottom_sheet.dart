@@ -11,7 +11,6 @@ class HistoryBottomSheet extends StatelessWidget {
     return DraggableScrollableSheet(
       initialChildSize: 0.7,
       minChildSize: 0.7,
-      maxChildSize: 1,
       expand: false,
       builder: (context, _) {
         return DefaultTabController(
@@ -27,7 +26,7 @@ class HistoryBottomSheet extends StatelessWidget {
                   Tab(text: 'Favorites', icon: Icon(Icons.favorite)),
                 ],
               ),
-              Expanded(
+              const Expanded(
                 child: TabBarView(
                   children: [
                     HistoryList(isFavoritesOnly: false),
