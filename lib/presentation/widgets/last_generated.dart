@@ -6,11 +6,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 class LastGenerated extends ConsumerWidget {
   final List<ColorModel> displayColors;
   final Color? textColor;
-  const LastGenerated({
-    required this.displayColors,
-    super.key,
-    this.textColor,
-  });
+  const LastGenerated({required this.displayColors, super.key, this.textColor});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

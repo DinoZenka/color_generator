@@ -86,7 +86,9 @@ class _HistoryListItemState extends ConsumerState<HistoryListItem> {
             ),
             onPressed: () {
               unawaited(
-                ref.read(colorProvider.notifier).updateColor(
+                ref
+                    .read(colorProvider.notifier)
+                    .updateColor(
                       id: widget.colorItem.id,
                       isFavourite: !widget.colorItem.isFavourite,
                     ),
