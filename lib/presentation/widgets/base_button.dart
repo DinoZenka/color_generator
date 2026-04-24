@@ -25,7 +25,7 @@ class BaseButton extends StatelessWidget {
         child: ElevatedButton.icon(
           style: ElevatedButton.styleFrom(
             shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(12),
+              borderRadius: BorderRadius.circular(8),
             ),
             backgroundColor: backgroundColor,
             foregroundColor: foregroundColor,

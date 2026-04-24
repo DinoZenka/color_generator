@@ -6,6 +6,13 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'color_provider.g.dart';
 
+final defaultBgColor = ColorModel(
+  id: '#FFFFFF',
+  color: Colors.white,
+  isFavourite: false,
+  createdAt: DateTime.now(),
+);
+
 @riverpod
 class ColorNotifier extends _$ColorNotifier {
   @override
@@ -49,31 +56,38 @@ class ColorNotifier extends _$ColorNotifier {
 @riverpod
 class ActiveColor extends _$ActiveColor {
   @override
-  Color? build() {
-    ref.listen(colorProvider.select((async) => async.value?.length), (
+  ColorModel? build() {
+    ref.listen(colorProvider.select((async) => async.value), (
       prev,
       next,
     ) {
-      if (prev != next) state = null;
+      if (prev?.length != next?.length || state == null) {
+        state = null;
+        return;
+      }
+      final updatedColor = next?.firstWhere((col) => col.id == state?.id);
+      if (updatedColor != null && state != null) {
+        state = updatedColor;
+      }
     });
 
     return null;
   }
 
   // ignore: use_setters_to_change_properties
-  void setActiveColor(Color color) => state = color;
+  void setActiveColor(ColorModel color) => state = color;
 }
 
 @riverpod
-Color displayColor(Ref ref) {
+ColorModel displayColor(Ref ref) {
   final selection = ref.watch(activeColorProvider);
   if (selection != null) return selection;
 
   final latestColor = ref.watch(
-    colorProvider.select((async) => async.value?.firstOrNull?.color),
+    colorProvider.select((async) => async.value?.firstOrNull),
   );
 
-  return latestColor ?? Colors.white;
+  return latestColor ?? defaultBgColor;
 }
 
 @riverpod

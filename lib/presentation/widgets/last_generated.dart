@@ -36,7 +36,7 @@ class LastGenerated extends ConsumerWidget {
                       key: ValueKey(currentColor.id),
                       onTap: () => ref
                           .read(activeColorProvider.notifier)
-                          .setActiveColor(currentColor.color),
+                          .setActiveColor(currentColor),
                       child: Container(
                         decoration: BoxDecoration(
                           boxShadow: [
