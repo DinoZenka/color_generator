@@ -13,16 +13,16 @@ class HomeScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final theme = Theme.of(context);
 
-    final bgColor = ref.watch(displayColorProvider);
+    final bgColorModel = ref.watch(displayColorProvider);
     final totalGenerated = ref.watch(
       colorProvider.select((async) => async.value?.length ?? 0),
     );
     final recentColors = ref.watch(recentColorsProvider);
 
-    final textColor = bgColor.contrastColor;
+    final textColor = bgColorModel.color.contrastColor;
 
     return Scaffold(
-      backgroundColor: bgColor,
+      backgroundColor: bgColorModel.color,
       persistentFooterButtons: [
         ActionButtons(textColor: textColor, clearDisabled: totalGenerated == 0),
       ],
@@ -42,7 +42,11 @@ class HomeScreen extends ConsumerWidget {
                   style: theme.textTheme.bodyLarge?.copyWith(color: textColor),
                 ),
                 const SizedBox(height: 28),
-                DisplayActiveColor(color: bgColor),
+                DisplayActiveColor(
+                  color: bgColorModel.color,
+                  colorId: bgColorModel.id,
+                  isFavourite: bgColorModel.isFavourite,
+                ),
                 const SizedBox(height: 28),
                 LastGenerated(
                   displayColors: recentColors,
